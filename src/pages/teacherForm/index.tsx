@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from "react"
 import Input from "../../components/input"
-import { useHistory, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 import PageHeader from "../../components/pageHeader"
 
@@ -13,13 +13,13 @@ import api from "../../helpers/api"
 
 function TeacherForm() {
   //form
-  const [name, setName] = useState()
-  const [avatar, setAvatar] = useState()
-  const [whatsapp, setWpp] = useState()
-  const [bio, setBio] = useState()
+  const [name, setName] = useState("")
+  const [avatar, setAvatar] = useState("")
+  const [whatsapp, setWpp] = useState("")
+  const [bio, setBio] = useState("")
 
-  const [subject, setSubject] = useState()
-  const [cost, setCost] = useState()
+  const [subject, setSubject] = useState("")
+  const [cost, setCost] = useState("")
 
   const [scheduleItens, setScheduleItens] = useState([
     { week_day: 0, to: "", from: "" },
@@ -53,7 +53,7 @@ function TeacherForm() {
   function setScheduleItenValue(index: number, field: string, value: string) {
     let schedule = scheduleItens
     schedule = schedule.map((el, i) => {
-      if (index == i) {
+      if (index === i) {
         return { ...el, [field]: value }
       } else {
         return el
@@ -133,7 +133,7 @@ function TeacherForm() {
             </legend>
             {scheduleItens.map((item, index) => {
               return (
-                <div className="schedule-item">
+                <div className="schedule-item" key={index}>
                   <Select
                     label="Dia da semana"
                     name="week_day"
